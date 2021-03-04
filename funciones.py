@@ -1,6 +1,4 @@
 # Constantes
-palabrasReservadas = ['FOR', 'TO', 'DO', 'PRINTF', 'NEXT']
-operadores = ['=', '(', ')']
 
 
 # funcion para leer el contenido de un Text
@@ -31,3 +29,8 @@ def dividirStringPorEspacios(texto):
   # print(lista)
   return lista
 
+# Convierte un texto a una lista iterable
+# de: 'hola'
+# a:  ['h','o','l','a']
+def convertirStringALista(string):
+  return list(string)

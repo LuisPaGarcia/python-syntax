@@ -14,6 +14,18 @@ PRINTF('Reccorido' + i) ==> PR[PRINTF], OP[(], LT['Recorrido'], OP[+], ID[i]
 
 NEXT i ==> PR[NEXT], ID[i]
 
+```
+FOR i = 1 TO 10 DO
+  PRINTF( 'Reccorido' + i)
+NEXT i
+```
+
+```
+FOR i=1 TO 10 DO
+  PRINTF('Reccorido'+i)
+NEXT i
+```
+
 Donde: PR = Palabra Reservada, ID = Identificador, NUM = Número, OP = Operador, LT = Literal
 
 Subir como evidencia en el mismo archivo pdf del numeral 1, el codigo fuente de la o las funcionales realizadas para esta funcionalidad

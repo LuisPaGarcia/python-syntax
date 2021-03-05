@@ -16,13 +16,7 @@ NEXT i ==> PR[NEXT], ID[i]
 
 ```
 FOR i = 1 TO 10 DO
-  PRINTF( 'Reccorido' + i)
-NEXT i
-```
-
-```
-FOR i=1 TO 10 DO
-  PRINTF('Reccorido'+i)
+  PRINTF ( 'Reccorido' + i )
 NEXT i
 ```
 

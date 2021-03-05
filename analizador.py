@@ -9,35 +9,71 @@ window = tk.Tk()
 # Configuracion general
 title = "Analizador léxico"
 window.title(title)
-window.geometry("1000x600")
+window.geometry("1300x600")
 window.resizable(False, False)
 
+def algoritmo2(contenidoLista):
+  print(enumerate(contenidoLista))
+  token = ""
+  lista = []
+  lenContenidoLista = len(contenidoLista)-1
+
+  for idx, val in enumerate(contenidoLista):
+    token = token+val
+    if val == " " or val == "\n" or val == "\t":
+      if palabrasReservadas.count(token) > 0:
+        lista.append("PR["+token+"]")
+        token=""
+        continue
+      
+      if operadores.count(token) > 0:
+        lista.append("OP["+token+"]")
+        token=""
+        continue
+
+      if token.isnumeric():
+        lista.append("NUM["+token+"]")
+        token=""
+        continue
+  print(lista)
+
+
+def algoritmo1(contenidoLista):
+  for linea in contenidoLista:
+    lista=""
+    listaDeLinea = linea.split()
+    #palabrasReservadas.count(token) > 0:
+    for palabra in listaDeLinea:
+      # es palabra reservada?
+      if palabrasReservadas.count(palabra) > 0:
+        lista = lista + "PR["+palabra+"] "
+        continue
+      
+      if operadores.count(palabra) > 0:
+        lista = lista + "OP["+palabra+"] "
+        continue
+
+      if palabra.isnumeric():
+        lista = lista + "NUM["+palabra+"] "
+        continue
+
+      if palabra[0] == "\'" and palabra[len(palabra)-1] == "\'" :
+        lista = lista + "LT["+palabra+"] "
+        continue
+        
+      lista = lista + "ID["+palabra+"] "
+
+    txtSalida.insert("insert", lista)
+    txtSalida.insert("insert", "\n")
+    print(lista)
 
 def analizar():
   contador = 0
   contenidoTexto = funciones.leerText(txtEntrada) # 'multiline'
   contenidoLista = funciones.convertirTextoALista(contenidoTexto) # ['lista','de','lineas']
-  primerLinea = contenidoLista[0]
-  token = ""
-  lista=[]
-  for char in list(primerLinea):
-    print(char)
-    if char != " ":
-      token = token + char
-    else:
-      if palabrasReservadas.count(token) > 0:
-        lista.append("PR["+token+"]")
-      elif token.isnumeric():
-        lista.append("NUM["+token+"]")
-      elif operadores.count(char) >0:
-        lista.append("OP["+char+"]")
-      # elif char != " ":
-      #   lista.append("ID["+token+"]")
-      token = ""
-      continue
   
-  print(lista)
-
+  algoritmo1(contenidoLista)
+  # algoritmo2(contenidoTexto)
 
 
 

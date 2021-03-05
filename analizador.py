@@ -9,7 +9,7 @@ window = tk.Tk()
 # Configuracion general
 title = "Analizador léxico"
 window.title(title)
-window.geometry("1300x600")
+window.geometry("1200x600")
 window.resizable(False, False)
 
 def algoritmo2(contenidoLista):
@@ -40,30 +40,30 @@ def algoritmo2(contenidoLista):
 
 def algoritmo1(contenidoLista):
   for linea in contenidoLista:
-    lista=""
+    lista=[]
     listaDeLinea = linea.split()
     #palabrasReservadas.count(token) > 0:
     for palabra in listaDeLinea:
       # es palabra reservada?
       if palabrasReservadas.count(palabra) > 0:
-        lista = lista + "PR["+palabra+"] "
+        lista.append("PR["+palabra+"]")
         continue
       
       if operadores.count(palabra) > 0:
-        lista = lista + "OP["+palabra+"] "
+        lista.append("OP["+palabra+"]")
         continue
 
       if palabra.isnumeric():
-        lista = lista + "NUM["+palabra+"] "
+        lista.append("NUM["+palabra+"]")
         continue
 
       if palabra[0] == "\'" and palabra[len(palabra)-1] == "\'" :
-        lista = lista + "LT["+palabra+"] "
+        lista.append("LT["+palabra+"]")
         continue
         
-      lista = lista + "ID["+palabra+"] "
+      lista.append("ID["+palabra+"]")
 
-    txtSalida.insert("insert", lista)
+    txtSalida.insert("insert", ', '.join(lista))
     txtSalida.insert("insert", "\n")
     print(lista)
 
@@ -93,6 +93,12 @@ txtEntrada = tk.Text(window)
 txtEntrada.grid(column=0, row=1, columnspan=200)
 txtEntrada.config(bd=0, padx=5, pady=5)
 txtEntrada.focus()
+
+valorDeInicio = """FOR i = 1 TO 10 DO
+  PRINTF ( 'Reccorido' + i )
+NEXT i
+"""
+txtEntrada.insert("insert", valorDeInicio)
 
 # Configuracion del output text
 txtSalida = tk.Text(window, bg="grey")
